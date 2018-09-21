@@ -16,4 +16,5 @@ int somme (int liste[], int taille){
   for (i = 0 ; i < taille ; i++){
     somme += liste[i];
   }
+  return somme;
 }
