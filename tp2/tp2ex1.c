@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "tp2.h"
+#include "tp2ex1.h"
 
 void afficher(int liste[], int taille) {
   int i;
