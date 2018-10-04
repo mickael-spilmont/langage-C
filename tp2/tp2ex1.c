@@ -5,7 +5,7 @@
 void afficher(int liste[], int taille) {
   int i;
   for (i = 0 ; i < taille ; i++){
-    printf("%d\n", liste[i]);
+    printf("%d ; ", liste[i]);
   }
   printf("\n");
 }
