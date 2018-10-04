@@ -36,11 +36,11 @@ int main(void){
 
   printf("%d/%d + %d/%d = %d/%d\n\n", fraction1.num,fraction1.den, fraction2.num,
     fraction2.den, fraction4.num, fraction4.den);
-  
+
   printf("Question 3 :\n");
   Rationnel fraction5 = {0, 0};
   Rationnel liste[] = {fraction1, fraction2, fraction3, fraction4, fraction5};
-  
+
   Rationnel fraction6 = rationnel_plus_petit(liste);
   printf("Le plus petit rationnel est : %d/%d\n", fraction6.num, fraction6.den);
 
