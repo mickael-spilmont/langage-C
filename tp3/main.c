@@ -31,5 +31,11 @@ int main(void) {
   printf("\nExercice 6\nChaine %s\n", chaine2);
   printf("Trouvé : %s\n", mon_strchr(chaine2, 'r'));
 
+  printf("\nExercice 7\n");
+  char* haystack = "Ma supesuper chaine de caracteres";
+  char* needle = "super";
+  printf("Haystack : %s\nNeedle : %s\n", haystack, needle);
+  printf("%s\n", mon_strstr(haystack, needle));
+
   return 0;
 }

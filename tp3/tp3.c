@@ -49,7 +49,7 @@ char *mon_strcat(char *s1, const char *s2) {
     s1++;
     s2++;
   }
-  
+
   return origin;
 }
 
@@ -58,4 +58,46 @@ char *mon_strchr(char *s, int c) {
     s++;
   }
   return s;
+}
+
+char *mon_strstr(char *haystack, char *needle) {
+  char* needleOrigine = needle;
+
+// On compte le nombre de charactere de needle
+  int needleTaille = 0;
+  while ( *needle != '\0') {
+    needle++;
+    needleTaille++;
+  }
+
+// Compteur de lettres qui correspondent
+  int i = 0;
+  while (*haystack != '\0' && i < needleTaille) {
+    printf("%d\n", i);
+
+    // Cas 1 le caractère de haystack est le même que celui de needle
+    if (*haystack == *needle) {
+      needle++;
+      i++;
+    }
+    // Cas 2 le caractère est différent mais un début de needle à été trouvé, dans
+    // ce cas on remet le compteur à 0
+    else if (i > 0){
+      needle = needleOrigine;
+      haystack--;
+      i = 0;
+    }
+    // Cas 3 le caractère est différent est aucun début de needle n'a été trouvé
+    else {
+      needle = needleOrigine;
+      i = 0;
+    }
+    haystack++;
+    printf("%c\n", *haystack);
+  }
+
+  if (i == needleTaille) {
+    haystack -= i;
+  }
+  return haystack;
 }
