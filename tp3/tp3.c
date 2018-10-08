@@ -93,11 +93,22 @@ char *mon_strstr(char *haystack, char *needle) {
       i = 0;
     }
     haystack++;
-    printf("%c\n", *haystack);
   }
 
   if (i == needleTaille) {
     haystack -= i;
+  }
+  return haystack;
+}
+
+char *mon_strstr_v2(char *haystack, char *needle) {
+  char needleFirstLetter = *needle;
+  int needleLenght = mon_strlen(needle);
+  int resultat;
+
+  while (*haystack != '\n' && resultat != 0) {
+    haystack = mon_strchr(haystack, needleFirstLetter);
+    resultat = mon_strcmp_n(haystack, needle, needleLenght);
   }
   return haystack;
 }

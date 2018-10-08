@@ -37,5 +37,9 @@ int main(void) {
   printf("Haystack : %s\nNeedle : %s\n", haystack, needle);
   printf("%s\n", mon_strstr(haystack, needle));
 
+  printf("\nExercice 8\n");
+  printf("Haystack : %s\nNeedle : %s\n", haystack, needle);
+  printf("%s\n", mon_strstr_v2(haystack, needle));
+
   return 0;
 }
