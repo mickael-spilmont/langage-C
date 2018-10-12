@@ -2,6 +2,7 @@
 
 #include "tp3.h"
 
+// Compte le nombre de caractère dans une chaine
 int mon_strlen(char s[]) {
   int i = 0;
   while ( s[i] != '\0' ) {
@@ -10,6 +11,7 @@ int mon_strlen(char s[]) {
   return i;
 }
 
+// Même fonction que la précédente mais utilise des pointeurs
 int mon_strlen_pointeur(const char *s) {
   int i = 0;
   while ( *s != '\0') {
@@ -19,6 +21,9 @@ int mon_strlen_pointeur(const char *s) {
   return i;
 }
 
+// Compare lexicographiquement deux chaines de caractères, et retourne un nombre négatif si s1 est plus petite que s2,
+// un nombre pausitif dans la cas contraire et 0 dans le cas de deux cahines identiques
+// Attention, ne convertie pas les majuscules qui sont donc prise en compte !
 int mon_strcmp(const char * s1, const char * s2) {
   while ( *s1 == *s2 && *s1 && *s2 ) {
     s1++;
@@ -28,6 +33,7 @@ int mon_strcmp(const char * s1, const char * s2) {
   return *s1 - *s2;
 }
 
+// Même fonction que la précédente mais compare sur les n premiers caractères
 int mon_strcmp_n(const char* s1, const char* s2, int n) {
   int i = 0;
   while ( *s1 == *s2 && *s1 && *s2 && i < n) {
@@ -39,6 +45,8 @@ int mon_strcmp_n(const char* s1, const char* s2, int n) {
   return *s1 - *s2;
 }
 
+// Concataine deux chaine de caractères à condition que la chaine s1 soit suffisament grande,
+// Attention aucun controlle n'est effectué !
 char *mon_strcat(char *s1, const char *s2) {
   int tailleS1 = mon_strlen_pointeur(s1);
   char* origin = s1;
@@ -53,6 +61,8 @@ char *mon_strcat(char *s1, const char *s2) {
   return origin;
 }
 
+// Cherche un caractère dans la chaine, et retourne le reste de la chaine à partir du caratère si trouvé,
+// retourne null dans le cas contraire
 char *mon_strchr(char *s, int c) {
   while (*s != c && *s != '\0') {
     s++;
@@ -60,6 +70,8 @@ char *mon_strchr(char *s, int c) {
   return s;
 }
 
+// Trouver une aiguille dans botte de foin, ou trouver une suite de caractères dans une chaine.
+// Retourne la chaine à partir du shémat si trouvé, ou null si non trouvé
 char *mon_strstr(char *haystack, char *needle) {
   char* needleOrigine = needle;
 
