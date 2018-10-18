@@ -14,7 +14,7 @@ int mon_strlen(char s[]) {
 // Même fonction que la précédente mais utilise des pointeurs
 int mon_strlen_pointeur(const char *s) {
   int i = 0;
-  while (*s != '\0') {
+  while (*s != '\0') {  // (*s)
     s++;
     i++;
   }
@@ -23,7 +23,7 @@ int mon_strlen_pointeur(const char *s) {
 
 // Compare lexicographiquement deux chaines de caractères, et retourne un nombre
 // négatif si s1 est plus petite que s2, un nombre pausitif dans la cas
-// contraire et 0 dans le cas de deux cahines identiques Attention, ne convertie
+// contraire et 0 dans le cas de deux chaines identiques Attention, ne convertie
 // pas les majuscules qui sont donc prise en compte !
 int mon_strcmp(const char *s1, const char *s2) {
   while (*s1 == *s2 && *s1 && *s2) {
@@ -68,6 +68,10 @@ char *mon_strchr(char *s, int c) {
   while (*s != c && *s != '\0') {
     s++;
   }
+
+  if (*s == '\0') {
+    s = NULL;
+  }
   return s;
 }
 
@@ -85,9 +89,9 @@ char *mon_strstr(char *haystack, char *needle) {
   }
 
   // Compteur de lettres qui correspondent
+  needle = needleOrigine;
   int i = 0;
   while (*haystack != '\0' && i < needleTaille) {
-    printf("%d\n", i);
 
     // Cas 1 le caractère de haystack est le même que celui de needle
     if (*haystack == *needle) {
@@ -119,17 +123,17 @@ char *mon_strstr(char *haystack, char *needle) {
 // fonctions déja crées
 char *mon_strstr_v2(char *haystack, char *needle) {
   char needleFirstLetter = *needle;
-  int needleLenght = mon_strlen(needle);
+  int needleLenght = mon_strlen(needle)  - 1;
   int resultat;
 
-  while ((*haystack != '\0') && resultat != 0) {
+  while ((haystack != NULL && *haystack != '\0') && resultat != 0) {
     haystack = mon_strchr(haystack, needleFirstLetter);
-    resultat = mon_strcmp_n(haystack, needle, needleLenght - 1);
 
-    // Décalage permenttant d'avancer dans le haystack si le mot n'est pas
-    // Trouvé
-    if (resultat != 0) {
-      haystack++;
+    if (haystack != NULL) {
+      resultat = mon_strcmp_n(haystack, needle, needleLenght);
+      if (resultat != 0) {
+        haystack++;
+      }
     }
   }
   return haystack;
