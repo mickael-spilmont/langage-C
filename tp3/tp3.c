@@ -124,7 +124,7 @@ char *mon_strstr(char *haystack, char *needle) {
 char *mon_strstr_v2(char *haystack, char *needle) {
   char needleFirstLetter = *needle;
   int needleLenght = mon_strlen(needle)  - 1;
-  int resultat;
+  int resultat = 0;
 
   while ((haystack != NULL && *haystack != '\0') && resultat != 0) {
     haystack = mon_strchr(haystack, needleFirstLetter);
