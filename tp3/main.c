@@ -52,7 +52,14 @@ int main(void) {
 // test du recherche needle
   char* needle = "sachanx";
   char* haystack = "Un chasseur sachant chasser sans son chien";
-  printf("%s\n", mon_strstr_v2(haystack, needle));
+  haystack = mon_strstr_v2(haystack, needle);
+
+  if (haystack == NULL) {
+    printf("NULL\n");
+  }
+  else {
+    printf("%s\n", haystack);
+  }
 
   return 0;
 }
