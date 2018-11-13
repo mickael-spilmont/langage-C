@@ -36,9 +36,8 @@ int mon_strcmp(const char *s1, const char *s2) {
 
 // Même fonction que la précédente mais compare sur les n premiers caractères
 int mon_strcmp_n(const char *s1, const char *s2, int n) {
-  int i = 0;
+  int i = 1;
   while (*s1 == *s2 && *s1 && *s2 && i < n) {
-    printf("%c ; %c\n", *s1, *s2);
     i++;
     s1++;
     s2++;
@@ -124,16 +123,15 @@ char *mon_strstr(char *haystack, char *needle) {
 // fonctions déja crées
 char *mon_strstr_v2(char *haystack, char *needle) {
   char needleFirstLetter = *needle;
-  int needleLenght = mon_strlen(needle)  - 1;
+  int needleLenght = mon_strlen(needle);
   int resultat = -1;
 
-  while ((haystack != NULL && *haystack != '\0') && resultat != 0) {
-    printf("Passage dans la boucle\n");
+  while (haystack != NULL && resultat != 0) {
     haystack = mon_strchr(haystack, needleFirstLetter);
 
     if (haystack != NULL) {
       resultat = mon_strcmp_n(haystack, needle, needleLenght);
-      if (resultat != 0 && *haystack != '\0<') {
+      if (resultat != 0) {
         haystack++;
       }
     }
