@@ -1,3 +1,6 @@
+../bin/tp4: ../build/main_saisie.o ../build/saisie.o
+	gcc -o ../bin/tp4 ../build/main_saisie.o ../build/tp4.o
+
 ../bin/tp4: ../build/main.o ../build/tp4.o
 	gcc -o ../bin/tp4 ../build/main.o ../build/tp4.o
 
