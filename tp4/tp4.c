@@ -28,8 +28,8 @@ char *miroir(const char *s) {
 /* Permet la saisie d'une chaine de caratère de longeueur quelconque, et
 retourne une chaine de caractères de même longeur ou NULL si la mémoire n'a pas
 pu être allouée */
-char *saisie() {
-  char *resultat = calloc(1, sizeof(char));
+char* saisie() {
+  char* resultat = calloc(1, sizeof(char));
   if (resultat == NULL) {
     return resultat;
   }
