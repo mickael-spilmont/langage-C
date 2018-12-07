@@ -29,7 +29,7 @@ char *miroir(const char *s) {
 retourne une chaine de caractères de même longeur ou NULL si la mémoire n'a pas
 pu être allouée */
 char* saisie() {
-  char* resultat = calloc(1, sizeof(char));
+  char* resultat = calloc(5, sizeof(char));
   if (resultat == NULL) {
     return resultat;
   }
@@ -37,9 +37,11 @@ char* saisie() {
   int nbChar = 0;
   char caractere = getchar();
   while (!isspace(caractere)) {
-    resultat = realloc(resultat, (nbChar + 1) * sizeof(char));
-    if (resultat == NULL) {
-      return resultat;
+    if (nbChar > (int)strlen(resultat)) {
+      resultat = realloc(resultat, (nbChar + 5) * sizeof(char));
+      if (resultat == NULL) {
+        return resultat;
+      }
     }
 
     resultat[nbChar] = caractere;
@@ -47,5 +49,6 @@ char* saisie() {
     caractere = getchar();
   }
 
+  resultat[nbChar] = '\0';
   return resultat;
 }

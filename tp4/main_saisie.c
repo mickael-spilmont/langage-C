@@ -29,7 +29,6 @@ int main(int argc, char* argv[]) {
       f_miroir = 1;
       break;
     default:
-    case '?':
       f_erreur = 1;
     }
   }
