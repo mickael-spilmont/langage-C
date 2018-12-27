@@ -38,9 +38,9 @@ char* saisie() {
   int nbChar = 0;
   char caractere = getchar();
   while (!isspace(caractere)) {
-    if (nbChar > nbAlloue-1) {
-      nbAloue += 50;
-      resultat = realloc(resultat, nbAloue * sizeof(char));
+    if (nbChar >= nbAlloue) {
+      nbAlloue += 50;
+      resultat = realloc(resultat, nbAlloue * sizeof(char));
       if (resultat == NULL) {
         return resultat;
       }
