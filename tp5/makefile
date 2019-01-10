@@ -1,5 +1,5 @@
-../bin/tp5: ../build/main.o ../build/tp4.o
-	gcc -o ../bin/tp5 ../build/main.o ../build/tp4.o
+../bin/tp5: ../build/main.o ../build/tp5.o
+	gcc -o ../bin/tp5 ../build/main.o ../build/tp5.o
 
 ../build/main.o: main.c
 	gcc -Wall -Werror -W -c -o ../build/main.o main.c
