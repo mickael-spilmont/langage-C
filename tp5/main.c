@@ -6,8 +6,14 @@
 #include <unistd.h>
 #include <getopt.h>
 
+#include "tp5.c"
+
 // int main(int argc, char* argv[]) {
 int main() {
+  int car = 0;
+  int mot = 0;
+  int lig = 0;
+
   int fd = open("fichier.txt", O_RDONLY);
 
   if (fd == -1) {
@@ -16,12 +22,7 @@ int main() {
       exit(1);
   }
 
-  char buffer[80];
-  
-  while (read(fd, buffer, 80) > 0) {
-      printf("%s", buffer);
-  }
+  traiter(fd, &car, &mot, &lig);
 
-  close(fd);
   exit(0);
 }
