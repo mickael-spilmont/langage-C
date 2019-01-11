@@ -41,6 +41,7 @@ int main(int argc, char* argv[]) {
     f_ligne = 1;
   }
 
+// Si un argument est invalide on quitte le programme
   if (f_erreur) {
     exit (1);
   }
@@ -67,26 +68,29 @@ int main(int argc, char* argv[]) {
   int mot;
   int lig;
 
+// On traite les fichier un à un
   while (nbFichier > 0) {
     int fd = open(argv[argc - nbFichier], O_RDONLY);
 
+  // On vérifie l'ouverture correcte du fichier
     if (fd == -1) {
       perror(argv[argc - 1]);
       exit(1);
     }
 
+  // On remet les compteur à 0
     car = 0;
     mot = 0;
     lig = 0;
 
     traiter(fd, &car, &mot, &lig);
 
-    // On met à jour les totaux
+  // On met à jour les totaux
     totalCar += car;
     totalMot += mot;
     TotalLig += lig;
 
-    // Affichage
+  // Affichage
     if (f_caractere)
       printf("Caracteres : %d --> %s\n", car, argv[argc - nbFichier]);
     if (f_mot)
@@ -94,6 +98,7 @@ int main(int argc, char* argv[]) {
     if (f_ligne)
       printf("Lignes : %d --> %s\n", lig, argv[argc - nbFichier]);
 
+  // On décremente le nombre de fichier à traiter
     nbFichier --;
   }
 
@@ -105,7 +110,7 @@ int main(int argc, char* argv[]) {
     if (f_mot)
       printf("Mots : %d --> Total\n", totalMot);
     if (f_ligne)
-      printf("Lignes : %d --> Total\n", totalCar);
+      printf("Lignes : %d --> Total\n", TotalLig);
   }
 
   exit(0);
