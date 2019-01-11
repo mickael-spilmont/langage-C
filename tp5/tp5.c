@@ -9,14 +9,12 @@
 int traiter (int fd, int *car, int *mot, int *lig) {
   int nbOctet;
   char caractere = 0;
-  // char caracterePrecedent = 0;
   int dansUnMot = 0;
   char buffer[80] = {0};
 
   while ((nbOctet = read(fd, buffer, 80)) > 0) {;
     int i;
     for (i = 0 ; i < nbOctet ; i++) {
-      // caracterePrecedent = caractere;
       caractere = buffer[i];
       *car += 1;
 
