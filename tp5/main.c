@@ -15,6 +15,7 @@ int main(int argc, char* argv[]) {
   int f_ligne = 0;
   int f_erreur = 0;
   int option;
+  int fichierMultiple = 0;
 
 // Vérification des options
   while ((option = getopt(argc, argv, "cwl")) != -1) {
@@ -27,13 +28,20 @@ int main(int argc, char* argv[]) {
       break;
     case 'l':
       f_ligne = 1;
+      break;
     default:
       f_erreur = 1;
     }
   }
 
+// On vérifie si aucune option n'est passée, auquel cas on les passe tous sur true
+  if (!f_caractere && !f_mot && !f_ligne) {
+    f_caractere = 1;
+    f_mot = 1;
+    f_ligne = 1;
+  }
+
   if (f_erreur) {
-    printf("Option(s) incorrecte !");
     exit (1);
   }
 
@@ -46,59 +54,59 @@ int main(int argc, char* argv[]) {
     argcCopie--;
   }
 
+// Si on à plus d'un fichier on passe fichier multiple à true
+  if (nbFichier > 1)
+    fichierMultiple = 1;
+
   // Compteurs
-  // int totalCar = 0;
-  // int totalMot = 0;
-  // int TotalLig = 0;
+  int totalCar = 0;
+  int totalMot = 0;
+  int TotalLig = 0;
 
   int car;
   int mot;
   int lig;
 
-  printf("NbFichier = %d", nbFichier);
   while (nbFichier > 0) {
-    int fd = open(argv[argc - 1 - nbFichier], O_RDONLY);
+    int fd = open(argv[argc - nbFichier], O_RDONLY);
 
     if (fd == -1) {
       perror(argv[argc - 1]);
       exit(1);
     }
 
+    car = 0;
+    mot = 0;
+    lig = 0;
+
     traiter(fd, &car, &mot, &lig);
+
+    // On met à jour les totaux
+    totalCar += car;
+    totalMot += mot;
+    TotalLig += lig;
+
+    // Affichage
+    if (f_caractere)
+      printf("Caracteres : %d --> %s\n", car, argv[argc - nbFichier]);
+    if (f_mot)
+      printf("Mots : %d --> %s\n", mot, argv[argc - nbFichier]);
+    if (f_ligne)
+      printf("Lignes : %d --> %s\n", lig, argv[argc - nbFichier]);
+
+    nbFichier --;
   }
 
-  // // Descripteur de fichier
-  // int fd;
-
-  // if (argv[argc - 1][0] == '-') {
-  //   traiter(0, &car, &mot, &lig);
-  // }
-  // else { 
-  //   while (argc > 1 && argv[argc - 1][0] != '-') {
-  //     fd = open(argv[argc - 1], O_RDONLY);
-
-  //     if (fd == -1) {
-  //       perror(argv[argc - 1]);
-  //       exit(1);
-  //     }
-
-  //   // Appelle de la fonction de comptage
-  //     traiter(fd, &car, &mot, &lig);
-
-      
-
-  //   // On déduit 1 de argc
-  //     argc--;
-  // }
-
-
-// Affichage
-  if (f_caractere)
-    printf("Caracteres : %d", car);
-  if (f_mot)
-    printf("Mots : %d", mot);
-  if (f_ligne)
-    printf("Lignes : %d", lig);
+  // Si on a plusieur fichier on affiche le total
+  if (fichierMultiple ) {
+    printf("\n\n");
+    if (f_caractere)
+      printf("Caracteres : %d --> Total\n", totalCar);
+    if (f_mot)
+      printf("Mots : %d --> Total\n", totalMot);
+    if (f_ligne)
+      printf("Lignes : %d --> Total\n", totalCar);
+  }
 
   exit(0);
 }
